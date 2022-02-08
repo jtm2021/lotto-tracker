@@ -20,7 +20,25 @@ def get_funds_data():
     print("Data should be six numbers, separated by commas.")
     print("Example: 5, 10, 3, 20, 0, 8\n")
 
-    contribution = input("Enter your data here please: ")
-    print(f"The data provided is {contribution}")
+    contribution_str = input("Please enter your data here: ")
+    
+    funds_data = contribution_str.split(",")
+    validate_data(funds_data)
+
+
+def validate_data(values):
+    """
+    Converts all the string values into integers. 
+    It will raise an error if the strings are not converted into integers,
+    or if they are not exactly 6 values.
+    """
+    try:
+        if len(values) != 6:
+            raise ValueError(
+                f"6 values required! you provided {len(values)}"
+            )
+    except ValueError as e:
+        print(f"Invalid data: {e}, please try again.\n")
+
 
 get_funds_data()
