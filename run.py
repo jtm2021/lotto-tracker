@@ -12,43 +12,16 @@ SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('lotto_tracker')
 
-def get_funds_data():
+print("Welcome to Lotto Tracker Data Automation!\n")
+
+def get_contributions_data():
     """
-    Get funds input from the user to correspond each player's contribution
+    Get contributions from each player for the lotto draw.
     """
-    while True: 
-        print("Please enter contribution of each player.")
-        print("Data should be six numbers, separated by commas.")
-        print("Example: 5, 10, 3, 20, 0, 8\n")
+    print("Please enter contributions data for each player!")
+    print("Data should be eight numbers, separated by commas")
+    print("Example: 5,10,3,2,6,5,5,2\n")
 
-        contribution_str = input("Please enter your data here: ")
-        
-        funds_data = contribution_str.split(",")
-        
+    data_str = input("Enter your data here: ")
 
-        if validate_data(funds_data):
-            print("Data is valid")
-            break
-
-
-def validate_data(values):
-    """
-    Converts all the string values into integers. 
-    It will raise an error if the strings are not converted into integers,
-    or if they are not exactly 6 values.
-    """
-    print(values)
-    try:
-        [int(value) for value in values]
-        if len(values) != 6:
-            raise ValueError(
-                f"6 values required! you provided {len(values)}"
-            )
-    except ValueError as e:
-        print(f"Invalid data: {e}, please try again.\n")
-        return False
-
-    return True
-
-
-get_funds_data()
+get_contributions_data()
