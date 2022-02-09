@@ -14,16 +14,21 @@ SHEET = GSPREAD_CLIENT.open('lotto_tracker')
 
 def get_funds_data():
     """
-    Get funds input from the user which corresponds to each player's contribution
+    Get funds input from the user to correspond each player's contribution
     """
-    print("Please enter contributions data for each player.")
-    print("Data should be six numbers, separated by commas.")
-    print("Example: 5, 10, 3, 20, 0, 8\n")
+    while True: 
+        print("Please enter contribution of each player.")
+        print("Data should be six numbers, separated by commas.")
+        print("Example: 5, 10, 3, 20, 0, 8\n")
 
-    contribution_str = input("Please enter your data here: ")
-    
-    funds_data = contribution_str.split(",")
-    validate_data(funds_data)
+        contribution_str = input("Please enter your data here: ")
+        
+        funds_data = contribution_str.split(",")
+        
+
+        if validate_data(funds_data):
+            print("Data is valid")
+            break
 
 
 def validate_data(values):
@@ -41,6 +46,9 @@ def validate_data(values):
             )
     except ValueError as e:
         print(f"Invalid data: {e}, please try again.\n")
+        return False
+
+    return True
 
 
 get_funds_data()
