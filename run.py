@@ -13,7 +13,18 @@ GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('lotto_tracker')
 
 print("Welcome to Lotto Tracker Data Automation!")
-print("Please select from the menu using the corresponding number\n")
+print("Please select from the menu using the corresponding number:\n")
+print("1- Check Group Total Funds\n2- Make a Bet\n3- Input Lotto Win\n4- Check Last Numbers\n5- Check Member Funds\n6- Add Member Contribution\n")
+
+def get_user_choice():
+    """
+    Get user choice from the welcome menu.
+    """
+    user_choice = input("Please enter your choice (from number 1-6): ")
+
+    if user_choice == input(1):
+        get_contributions_data()
+
 
 
 def get_contributions_data():
@@ -80,12 +91,13 @@ def get_funds_data():
 
     total_funds = []
     for contributions, funds in zip(contributions_last_row, funds_last_row):
-        funds2 = int(contributions) + int(funds)
-        total_funds.append(funds2)
+        funds = int(contributions) + int(funds)
+        total_funds.append(funds)
 
     return total_funds
 
-data = get_contributions_data()
-contributions_data = [int(num) for num in data]
-update_contributions_worksheet(contributions_data)
+# data = get_contributions_data()
+# contributions_data = [int(num) for num in data]
+# update_contributions_worksheet(contributions_data)
 
+get_user_choice()
