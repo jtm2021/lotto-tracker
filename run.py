@@ -64,6 +64,14 @@ def check_total_funds():
     # can't get the sum of the last rows?
 
 
+def check_member_funds():
+    """
+    Check each member's contributions and current total funds
+    """
+    #show total amount of contributions made
+    #show current total funds in the game
+
+
 def calculate_total_funds():
     """
     Get the last row of funds data worksheet
@@ -91,6 +99,8 @@ def get_random_number():
     print(bet_numbers)
     numbers_worksheet = SHEET.worksheet("numbers")
     numbers_worksheet.append_row(bet_numbers)
+    #only append this values when the user confirms usage of numbers
+    #once, confirmation is made, print: numbers worksheet updated succesfully!
 
 
 def check_last_numbers():
@@ -112,7 +122,7 @@ def get_contributions_data():
         print("Data should be eight numbers, separated by commas.")
         print("Example: 5,10,3,2,6,5,5,2\n")
     
-        data_str = input("Enter your data here: ")
+        data_str = input("Enter your data here:\n")
     
         contributions_data = data_str.split(",")
         
