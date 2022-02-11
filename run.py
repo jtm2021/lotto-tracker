@@ -189,18 +189,18 @@ def validate_data(values):
     return True
 
 
-def update_contributions_worksheet(my_list):#rename variable
+def update_contributions_worksheet(new_contribution):
     """
     Update the contributions worksheet, adding new row with the list data
     provided
     """
     print("Updating contributions worksheet...\n")
     contributions_worksheet = SHEET.worksheet("contributions")
-    contributions_worksheet.append_row(my_list)#rename variable
-    print("Contributions worksheet updated succesfully\n")
+    contributions_worksheet.append_row(new_contribution)
+    funds_worksheet = SHEET.worksheet("funds")
+    funds_worksheet.append_row(new_contribution)
+    print("Contributions and Funds worksheet updated succesfully\n")
     check_main_menu()
-    
-    
 
 
 def exit_program():
