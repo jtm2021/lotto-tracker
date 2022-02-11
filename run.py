@@ -21,8 +21,8 @@ def get_user_choice():
     """
     Get user choice from the welcome menu.
     """
-    print("Please select from the menu using the corresponding number:\n")
-    print("""1 - Check Group Total Funds\n2 - Make a Bet\n3 - Input Lotto Win
+    print("\nPlease select from the menu using the corresponding number:\n")
+    print("""1 - Check Group Total Funds\n2 - Lucky Numbers\n3 - Input Lotto Win
 4 - Check Last Numbers\n5 - Check Member Funds\n6 - Add Member Contribution
 7 - Exit\n""")
     try:
@@ -42,10 +42,22 @@ def get_user_choice():
         elif user_choice == 7:
             exit_program()
     except ValueError:
-            print("\nInvalid Choice! Select a number from 1 to 7 only. Please try again.")  
-            # creates error if i make a new line of comment
+            print("\nInvalid Choice! Select a number from 1 to 7 only. Please try again.")
             get_user_choice()
-            # if a word is entered, it gives another error!
+
+
+def check_total_funds():
+    """
+    Check the total amount of money of all group members
+    """
+    print("\nCalculating the group's total funds...\n")
+    funds = SHEET.worksheet("funds").get_all_values()
+    funds_first_row = funds[1]
+    total_funds = sum([int(i) for i in funds_first_row])
+    print(f"Total Funds: €{total_funds}")
+    check_main_menu()
+    #edit variable name later
+
 
 def show_member_funds():
     funds = SHEET.worksheet("funds").get_all_values()
@@ -66,26 +78,6 @@ def calculate_winnings():
     # print("Updating funds worksheet...")
     # add member_share to each individual and update funds sheet
     # validate input from user for the winnings
-
-
-def check_total_funds():
-    """
-    Check the total amount of money of all group members
-    """
-    funds = SHEET.worksheet("funds").get_all_values()
-    funds_first_row = funds[1]
-    a = sum([int(i) for i in funds_first_row])
-    print(a)
-    check_main_menu()
-    #edit variable name later
-
-
-def check_member_funds():
-    """
-    Check each member's contributions and current total funds
-    """
-    # show total amount of contributions made
-    # show current total funds in the game
 
 
 def calculate_total_funds():
@@ -118,6 +110,7 @@ def get_random_number():
     numbers_worksheet.append_row(bet_numbers)
     # only append this values when the user confirms usage of numbers
     # once, confirmation is made, print: numbers worksheet updated succesfully!
+    #chnage name to lucky numbers
     check_main_menu()
 
 
@@ -125,7 +118,7 @@ def check_main_menu():
     """
     Ask user to go back to main menu or exit
     """
-    mx_choice = input(f"Enter yes to go back to main menu or no to exit program.")
+    mx_choice = input(f"Enter yes to go back to main menu or no to exit program: \n")
     if mx_choice.lower() == "yes":
         get_user_choice()
     elif mx_choice.lower() == "no":
