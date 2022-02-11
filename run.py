@@ -102,6 +102,17 @@ def input_win():
         input_win()
 
 
+def check_last_numbers():
+    """
+    Check the last lucky numbers used in a bet by the group
+    """
+    numbers_used = SHEET.worksheet("numbers").get_all_values()
+    numbers_last_row = numbers_used[-1]
+    last_lucky_number = [int(i) for i in numbers_last_row]
+    print(f"\nThe last lucky numbers are {last_lucky_number}:)\n")
+    check_main_menu()
+
+
 def show_member_funds():
     funds = SHEET.worksheet("funds").get_all_values()
     for i in range(len(funds[0])):
@@ -141,19 +152,6 @@ def check_main_menu():
         print(f"Invalid answer! Try again.")
         check_main_menu()
     # change name of variable
-
-
-def check_last_numbers():
-    """
-    Checks the last numbers used in a bet by the group
-    """
-    numbers_used = SHEET.worksheet("numbers").get_all_values()
-    numbers_last_row = numbers_used[-1]
-    b = [int(i) for i in numbers_last_row]
-    print(b)
-    # rename variable later
-    # update sheets
-    # add check nemu function later
 
 
 def get_contributions_data():
