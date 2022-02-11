@@ -67,9 +67,6 @@ def get_lucky_numbers():
     print("Feel free to copy these numbers, who knows? you might get the jackpot! :)\n")
     numbers_worksheet = SHEET.worksheet("numbers")
     numbers_worksheet.append_row(lucky_numbers)
-    # only append this values when the user confirms usage of numbers
-    # once, confirmation is made, print: numbers worksheet updated succesfully!
-    #chnage name to lucky numbers
     check_main_menu()
 
 
@@ -114,10 +111,11 @@ def check_last_numbers():
 
 
 def show_member_funds():
+    print("Here are the current funds of each member:")
     funds = SHEET.worksheet("funds").get_all_values()
     for i in range(len(funds[0])):
-        print(funds[0][i],":",funds[1][i])
-        # add check main menu later
+        print(f"{funds[0][i]}: €{funds[1][i]}")
+    check_main_menu()
 
 
 def calculate_total_funds():
