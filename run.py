@@ -30,7 +30,7 @@ def get_user_choice():
         if user_choice == 1:
             check_total_funds()
         elif user_choice == 2:
-            get_random_number()
+            get_lucky_numbers()
         elif user_choice == 3:
             calculate_winnings()
         elif user_choice == 4:
@@ -56,7 +56,21 @@ def check_total_funds():
     total_funds = sum([int(i) for i in funds_first_row])
     print(f"Total Funds: €{total_funds}")
     check_main_menu()
-    #edit variable name later
+
+
+def get_lucky_numbers():
+    """
+    Get lucky numbers using a random number generator
+    """
+    lucky_numbers = random.sample(list(range(1, 47)), 6)
+    print(f"\nHere's the lucky numbers for today: {lucky_numbers}")
+    print("Feel free to copy these numbers, who knows? you might get the jackpot! :)\n")
+    numbers_worksheet = SHEET.worksheet("numbers")
+    numbers_worksheet.append_row(lucky_numbers)
+    # only append this values when the user confirms usage of numbers
+    # once, confirmation is made, print: numbers worksheet updated succesfully!
+    #chnage name to lucky numbers
+    check_main_menu()
 
 
 def show_member_funds():
@@ -97,21 +111,6 @@ def calculate_total_funds():
     fundsheets.append_row(total_funds)
     overall_balance = sum(total_funds)
     print(f"The group has {overall_balance}euros in total!")
-
-
-def get_random_number():
-    """
-    Make a bet function using a quick pick random number generator
-    """
-    bet_numbers = random.sample(list(range(1, 47)), 6)
-    print(f"""Here's the quick pick numbers: {bet_numbers}
-    Feel free to copy these numbers :)""")
-    numbers_worksheet = SHEET.worksheet("numbers")
-    numbers_worksheet.append_row(bet_numbers)
-    # only append this values when the user confirms usage of numbers
-    # once, confirmation is made, print: numbers worksheet updated succesfully!
-    #chnage name to lucky numbers
-    check_main_menu()
 
 
 def check_main_menu():
