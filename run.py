@@ -63,7 +63,7 @@ def get_lucky_numbers():
     Get lucky numbers using a random number generator
     """
     lucky_numbers = random.sample(list(range(1, 47)), 6)
-    print(f"\nHere's the lucky numbers for today: {lucky_numbers}")
+    print(f"\nHere's the lucky numbers for you today: {lucky_numbers}")
     print("Feel free to copy these numbers, who knows? you might get the jackpot! :)\n")
     numbers_worksheet = SHEET.worksheet("numbers")
     numbers_worksheet.append_row(lucky_numbers)
@@ -76,7 +76,7 @@ def calculate_winnings():
     """
     winning_value = int(input("\nPlease enter the amount of winnings again: "))
     member_share = winning_value // 8
-    print(f"\nThe group has won €{winning_value}\n")
+    print(f"\nCongratulations! Your group has won €{winning_value}\n")
     print("Calculating dividends for each member...")
     print(f"Each member gets {member_share} each!\n")
     fundsheets = SHEET.worksheet("funds")
@@ -159,7 +159,9 @@ def get_contributions_data():
     while True:
         print("Please enter contributions data for each player!")
         print("Data should be eight numbers, separated by commas.")
-        print("Example: 5,10,3,2,6,5,5,2\n")
+        print("Contributions for each member should be added in alphabetical order.")
+        print("Aimee, Bernie, Carlos, Declan, Eimear, Fiona, Greg, Harry")
+        print("Example: 5,10,0,2,6,5,5,2\n")
     
         data_str = input("Enter your data here:\n")
     
