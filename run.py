@@ -32,7 +32,7 @@ def get_user_choice():
         elif user_choice == 2:
             get_lucky_numbers()
         elif user_choice == 3:
-            calculate_winnings()
+            input_win()
         elif user_choice == 4:
             check_last_numbers()
         elif user_choice == 5:
@@ -73,25 +73,43 @@ def get_lucky_numbers():
     check_main_menu()
 
 
-def show_member_funds():
-    funds = SHEET.worksheet("funds").get_all_values()
-    for i in range(len(funds[0])):
-        print(funds[0][i],":",funds[1][i])
-        # add check main menu later
 
 def calculate_winnings():
     """
     Get the value of winnings from the user and divide equally to all members
     """
-    winning_value = int(input("Please enter the amount of winnings: "))
+    winning_value = int(input("\nPlease enter the amount of winnings again: "))
     member_share = winning_value // 8
-    print(f"""The group has won €{winning_value} and each member gets
-    {member_share} each!""")
+    print(f"\nThe group has won €{winning_value}\n")
+    print("Calculating dividends for each member...")
+    print(f"Each member gets {member_share} each!\n")
     fundsheets = SHEET.worksheet("funds")
     fundsheets.append_row([member_share]*8)
+    print("Updating funds worksheet...\n")
+    print("Funds worksheet succesfully updated!\n")
     # print("Updating funds worksheet...")
     # add member_share to each individual and update funds sheet
     # validate input from user for the winnings
+
+
+def input_win():
+    """
+    Ask user to input amount of winnings and verify if the user is sure of the amount
+    """
+    Winning_amount = input(f"Enter the amount of the winnings: \n")
+    sure_answer = input("Enter yes if you are sure: ")
+    if sure_answer.lower() == "yes":
+        calculate_winnings()
+    else:
+        print(f"Try again!")
+        input_win()
+
+
+def show_member_funds():
+    funds = SHEET.worksheet("funds").get_all_values()
+    for i in range(len(funds[0])):
+        print(funds[0][i],":",funds[1][i])
+        # add check main menu later
 
 
 def calculate_total_funds():
@@ -125,6 +143,7 @@ def check_main_menu():
     else:
         print(f"Invalid answer! Try again.")
         check_main_menu()
+    # change name of variable
 
 
 def check_last_numbers():
