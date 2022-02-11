@@ -73,7 +73,6 @@ def get_lucky_numbers():
     check_main_menu()
 
 
-
 def calculate_winnings():
     """
     Get the value of winnings from the user and divide equally to all members
@@ -87,9 +86,7 @@ def calculate_winnings():
     fundsheets.append_row([member_share]*8)
     print("Updating funds worksheet...\n")
     print("Funds worksheet succesfully updated!\n")
-    # print("Updating funds worksheet...")
-    # add member_share to each individual and update funds sheet
-    # validate input from user for the winnings
+    check_main_menu()
 
 
 def input_win():
