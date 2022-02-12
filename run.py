@@ -83,7 +83,6 @@ def calculate_winnings():
     print(f"\nCongratulations! Your group has won €{winning_value}\n")
     print("Calculating dividends for each member...")
     print(f"Each member gets €{member_share_float} each!\n")
-    # print(f"Each member gets {"{:.2f}".format(member_share)}")
     fundsheets = SHEET.worksheet("funds")
     fundsheets.append_row([member_share]*8)
     print("Updating funds worksheet...\n")
@@ -96,12 +95,14 @@ def input_win():
     Ask user to input amount of winnings and verify if the 
     user is sure of the amount.
     """
-    sure_answer = float(input(f"Enter the amount of the winnings: \n"))
-    if sure_answer:
-        calculate_winnings()
-    else:
-        print(f"Try again!")
-        input_win()
+    while True:
+        try:
+            sure_answer = float(input(f"Enter the amount of the winnings: \n"))
+            calculate_winnings()
+            break
+        except:
+            print("That's not a valid option!")
+            
 
 
 def check_last_numbers():
@@ -135,7 +136,6 @@ def check_main_menu():
     else:
         print(f"Invalid answer! Try again.")
         check_main_menu()
-    # change name of variable
 
 
 def get_contributions_data():
@@ -145,8 +145,8 @@ def get_contributions_data():
     while True:
         print("Please enter contributions data for each player!")
         print("Data should be eight numbers, separated by commas.")
-        print("Contributions for each member should be added in alphabetical order.")
-        print("Example: Aimee, Bernie, Carlos, Declan, Eimear, Fiona, Greg, Harry")
+        print("Contributions must be added in alphabetical order.")
+        print("Example: Ann, Ben, Carl, Dean, Emma, Fiona, Greg, Harry")
         print("Example: 5,10,0,2,6,5,5,2\n")
     
         data_str = input("Enter your data here:\n")
@@ -198,20 +198,13 @@ def exit_program():
     print("Thanks for checking in! Have a nice day! Goodbye...")
 
 
-def withdraw_money():
-    """
-    Withdraw money for a group member
-    """
-    wd_sheet = SHEET.worksheet("funds").get_all_values()[1:]
-    cell = wd_sheet[1][2]
-    print(cell)
+# def withdraw_money():
+#     """
+#     Withdraw money for a group member
+#     """
+#     wd_sheet = SHEET.worksheet("funds").get_all_values()[1:]
+#     cell = wd_sheet[1][2]
+#     print(cell)
 
 # withdraw_money()
 get_user_choice()
-# edit long lines of codes
-# check_main_menu : rephrase question
-# input_lotto_win: re-enter to confirm amount
-# input amount to the nearest whole number
-# use float instead of ints for the winnings
-# input winning, any key, error
-#sure_answer = 0
