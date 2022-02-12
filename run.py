@@ -42,10 +42,10 @@ def get_user_choice():
         elif user_choice == 7:
             exit_program()
         elif user_choice <1 or user_choice > 7:
-            print("\nInvalid Choice! Select a number from 1 to 7 only. Please try again.")
+            print("\nInvalid Choice! Please try again.")
             get_user_choice()
     except ValueError:
-            print("\nInvalid Choice! Select a number from 1 to 7 only. Please try again.")
+            print("\nInvalid Choice! Please try again.")
             get_user_choice()
 
 
@@ -67,7 +67,7 @@ def get_lucky_numbers():
     """
     lucky_numbers = random.sample(list(range(1, 47)), 6)
     print(f"\nHere's the lucky numbers for you today: {lucky_numbers}")
-    print("Feel free to copy these numbers, who knows? you might get the jackpot! :)\n")
+    print("Feel free to copy these numbers, you might win the jackpot! :)\n")
     numbers_worksheet = SHEET.worksheet("numbers")
     numbers_worksheet.append_row(lucky_numbers)
     check_main_menu()
@@ -77,11 +77,13 @@ def calculate_winnings():
     """
     Get the value of winnings from the user and divide equally to all members
     """
-    winning_value = int(input("\nPlease enter the amount of winnings again: "))
-    member_share = winning_value // 8
+    winning_value = float(input("\nRe-enter amount to confirm: "))
+    member_share = float(winning_value / 8)
+    member_share_float = "{:.2f}".format(member_share)
     print(f"\nCongratulations! Your group has won €{winning_value}\n")
     print("Calculating dividends for each member...")
-    print(f"Each member gets {member_share} each!\n")
+    print(f"Each member gets €{member_share_float} each!\n")
+    # print(f"Each member gets {"{:.2f}".format(member_share)}")
     fundsheets = SHEET.worksheet("funds")
     fundsheets.append_row([member_share]*8)
     print("Updating funds worksheet...\n")
@@ -91,11 +93,11 @@ def calculate_winnings():
 
 def input_win():
     """
-    Ask user to input amount of winnings and verify if the user is sure of the amount
+    Ask user to input amount of winnings and verify if the 
+    user is sure of the amount.
     """
-    Winning_amount = input(f"Enter the amount of the winnings: \n")
-    sure_answer = input("Enter yes if you are sure: ")
-    if sure_answer.lower() == "yes":
+    sure_answer = float(input(f"Enter the amount of the winnings: \n"))
+    if sure_answer:
         calculate_winnings()
     else:
         print(f"Try again!")
@@ -125,7 +127,7 @@ def check_main_menu():
     """
     Ask user to go back to main menu or exit
     """
-    menu_exit_choice = input(f"Enter yes to go back to main menu or no to exit program: \n")
+    menu_exit_choice = input(f"Do you need anything else? (yes/no): \n")
     if menu_exit_choice.lower() == "yes":
         get_user_choice()
     elif menu_exit_choice.lower() == "no":
@@ -212,3 +214,4 @@ get_user_choice()
 # input amount to the nearest whole number
 # use float instead of ints for the winnings
 # input winning, any key, error
+#sure_answer = 0
