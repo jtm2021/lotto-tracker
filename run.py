@@ -26,7 +26,7 @@ def get_user_choice():
 4 - Check Last Numbers\n5 - Check Member Funds\n6 - Add Member Contribution
 7 - Exit\n""")
     try:
-        user_choice = int(input("Please enter your choice (from no. 1-7): "))
+        user_choice = int(input("Please enter your choice (from no. 1-7): \n"))
         if user_choice == 1:
             check_total_funds()
         elif user_choice == 2:
@@ -77,7 +77,7 @@ def calculate_winnings():
     """
     Get the value of winnings from the user and divide equally to all members
     """
-    winning_value = float(input("\nRe-enter amount to confirm: "))
+    winning_value = float(input("\nRe-enter amount to confirm: \n"))
     member_share = float(winning_value / 8)
     member_share_float = "{:.2f}".format(member_share)
     print(f"\nCongratulations! Your group has won €{winning_value}\n")
