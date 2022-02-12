@@ -41,6 +41,9 @@ def get_user_choice():
             get_contributions_data()
         elif user_choice == 7:
             exit_program()
+        elif user_choice > 7:
+            print("\nInvalid Choice! Select a number from 1 to 7 only. Please try again.")
+            get_user_choice()
     except ValueError:
             print("\nInvalid Choice! Select a number from 1 to 7 only. Please try again.")
             get_user_choice()
@@ -106,7 +109,7 @@ def check_last_numbers():
     numbers_used = SHEET.worksheet("numbers").get_all_values()
     numbers_last_row = numbers_used[-1]
     last_lucky_number = [int(i) for i in numbers_last_row]
-    print(f"\nThe last lucky numbers are {last_lucky_number}:)\n")
+    print(f"\nThe last lucky numbers are {last_lucky_number}\n")
     check_main_menu()
 
 
@@ -141,10 +144,10 @@ def check_main_menu():
     """
     Ask user to go back to main menu or exit
     """
-    mx_choice = input(f"Enter yes to go back to main menu or no to exit program: \n")
-    if mx_choice.lower() == "yes":
+    menu_exit_choice = input(f"Enter yes to go back to main menu or no to exit program: \n")
+    if menu_exit_choice.lower() == "yes":
         get_user_choice()
-    elif mx_choice.lower() == "no":
+    elif menu_exit_choice.lower() == "no":
         exit_program()
     else:
         print(f"Invalid answer! Try again.")
@@ -160,7 +163,7 @@ def get_contributions_data():
         print("Please enter contributions data for each player!")
         print("Data should be eight numbers, separated by commas.")
         print("Contributions for each member should be added in alphabetical order.")
-        print("Aimee, Bernie, Carlos, Declan, Eimear, Fiona, Greg, Harry")
+        print("Example: Aimee, Bernie, Carlos, Declan, Eimear, Fiona, Greg, Harry")
         print("Example: 5,10,0,2,6,5,5,2\n")
     
         data_str = input("Enter your data here:\n")
