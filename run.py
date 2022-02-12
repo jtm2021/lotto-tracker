@@ -26,7 +26,7 @@ def get_user_choice():
 4 - Check Last Numbers\n5 - Check Member Funds\n6 - Add Member Contribution
 7 - Exit\n""")
     try:
-        user_choice = int(input("Please enter your choice (from number 1-7): "))
+        user_choice = int(input("Please enter your choice (from no. 1-7): "))
         if user_choice == 1:
             check_total_funds()
         elif user_choice == 2:
@@ -41,7 +41,7 @@ def get_user_choice():
             get_contributions_data()
         elif user_choice == 7:
             exit_program()
-        elif user_choice > 7:
+        elif user_choice <1 or user_choice > 7:
             print("\nInvalid Choice! Select a number from 1 to 7 only. Please try again.")
             get_user_choice()
     except ValueError:
@@ -121,25 +121,6 @@ def show_member_funds():
     check_main_menu()
 
 
-def calculate_total_funds():
-    """
-    Get the last row of funds data worksheet
-    """
-    contributions = SHEET.worksheet("contributions").get_all_values()
-    contributions_last_row = contributions[-1]
-    funds = SHEET.worksheet("winnings").get_all_values()
-    funds_last_row = funds[-1]
-
-    total_funds = []
-    for contributions, funds in zip(contributions_last_row, funds_last_row):
-        funds = int(contributions) + int(funds)
-        total_funds.append(funds)
-    fundsheets = SHEET.worksheet("funds")
-    fundsheets.append_row(total_funds)
-    overall_balance = sum(total_funds)
-    print(f"The group has {overall_balance}euros in total!")
-
-
 def check_main_menu():
     """
     Ask user to go back to main menu or exit
@@ -204,7 +185,7 @@ def update_contributions_worksheet(new_contribution):
     contributions_worksheet.append_row(new_contribution)
     funds_worksheet = SHEET.worksheet("funds")
     funds_worksheet.append_row(new_contribution)
-    print("Contributions and Funds worksheet updated succesfully\n")
+    print("Contributions and Funds worksheet updated succesfully.\n")
     check_main_menu()
 
 
@@ -215,4 +196,19 @@ def exit_program():
     print("Thanks for checking in! Have a nice day! Goodbye...")
 
 
+def withdraw_money():
+    """
+    Withdraw money for a group member
+    """
+    wd_sheet = SHEET.worksheet("funds").get_all_values()[1:]
+    cell = wd_sheet[1][2]
+    print(cell)
+
+# withdraw_money()
 get_user_choice()
+# edit long lines of codes
+# check_main_menu : rephrase question
+# input_lotto_win: re-enter to confirm amount
+# input amount to the nearest whole number
+# use float instead of ints for the winnings
+# input winning, any key, error
