@@ -26,7 +26,7 @@ def get_user_choice():
 4 - Check Last Numbers\n5 - Check Member Funds\n6 - Add Member Contribution
 7 - Exit\n""")
     try:
-        user_choice = int(input("Please enter your choice (from no. 1-7): \n"))
+        user_choice = int(input("Please enter your choice (from no. 1-7):\n"))
         if user_choice == 1:
             check_total_funds()
         elif user_choice == 2:
@@ -56,8 +56,9 @@ def check_total_funds():
     print("\nCalculating the group's total funds...\n")
     funds = SHEET.worksheet("funds").get_all_values()
     funds_first_row = funds[1]
-    total_funds = sum([int(i) for i in funds_first_row])
-    print(f"Total Funds: €{total_funds}")
+    total_funds = sum([float(i) for i in funds_first_row])
+    total_funds_float = "{:.2f}".format(total_funds)
+    print(f"Total Funds: €{total_funds_float}")
     check_main_menu()
 
 
@@ -171,7 +172,7 @@ def validate_data(values):
                 f"8 values required! you provided {len(values)}"
             )
     except ValueError:
-        print(f"Invalid data! Please try again.\n")
+        print(f"\nInvalid data! Please try again.\n")
         return False
 
     return True
