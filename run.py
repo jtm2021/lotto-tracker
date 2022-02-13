@@ -69,7 +69,7 @@ def get_lucky_numbers():
     """
     lucky_numbers = random.sample(list(range(1, 47)), 6)
     print(f"\nHere's the lucky numbers for you today: {lucky_numbers}")
-    print("Feel free to copy these numbers, you might win the jackpot! :)\n")
+    print("Feel free to copy these numbers, you might win the jackpot! :)")
     numbers_worksheet = SHEET.worksheet("numbers")
     numbers_worksheet.append_row(lucky_numbers)
     check_main_menu()
@@ -80,15 +80,16 @@ def calculate_winnings():
     Get the value of winnings from the user and divide equally to all members
     """
     winning_value = float(input("\nRe-enter amount to confirm: \n"))
+    total_win = "{:.2f}".format(winning_value)
     member_share = float(winning_value / 8)
     member_share_float = "{:.2f}".format(member_share)
-    print(f"\nCongratulations! Your group has won €{winning_value}\n")
+    print(f"\nCongratulations! Your group has won €{total_win}\n")
     print("Calculating dividends for each member...")
     print(f"Each member gets €{member_share_float} each!\n")
     fundsheets = SHEET.worksheet("funds")
     fundsheets.append_row([member_share]*8)
     print("Updating funds worksheet...\n")
-    print("Funds worksheet succesfully updated!\n")
+    print("Funds worksheet successfully updated!\n")
     check_main_menu()
 
 
@@ -121,7 +122,7 @@ def show_member_funds():
     """
     Retrieve data for each member's available funds
     """
-    print("Here are the current funds of each member:")
+    print("\nHere are the current funds of each member:")
     funds = SHEET.worksheet("funds").get_all_values()
     for i in range(len(funds[0])):
         print(f"{funds[0][i]}: €{funds[1][i]}")
@@ -132,7 +133,7 @@ def check_main_menu():
     """
     Ask user to go back to main menu or exit
     """
-    menu_exit_choice = input("Do you need anything else? (yes/no): \n")
+    menu_exit_choice = input("\nDo you need anything else? (yes/no): \n")
     if menu_exit_choice.lower() == "yes":
         get_user_choice()
     elif menu_exit_choice.lower() == "no":
@@ -147,7 +148,7 @@ def get_contributions_data():
     Get contributions from each player for the lotto draw.
     """
     while True:
-        print("Please enter contributions data for each player!")
+        print("\nPlease enter contributions data for each player!")
         print("Data should be eight numbers, separated by commas.")
         print("Contributions must be added in alphabetical order.")
         print("Example: Ann, Ben, Carl, Dean, Emma, Fiona, Greg, Harry")
@@ -189,7 +190,7 @@ def update_contributions_worksheet(new_contribution):
     contributions_worksheet.append_row(new_contribution)
     funds_worksheet = SHEET.worksheet("funds")
     funds_worksheet.append_row(new_contribution)
-    print("Contributions and Funds worksheet updated succesfully.\n")
+    print("Contributions and Funds worksheet updated successfully.\n")
     check_main_menu()
 
 
@@ -285,8 +286,8 @@ def confirm_withdraw_choice():
     elif withdraw_choice.lower() == "no":
         check_main_menu()
     else:
-        print("Invalid answer! Try again.")
-        who_wants_withdrawal()
+        print("\nInvalid answer! Try again.")
+        confirm_withdraw_choice()
 
 
 def who_wants_withdrawal():
@@ -329,7 +330,7 @@ numbers above:\n"""))
             print("\nInvalid Choice! Please try again.")
             who_wants_withdrawal()
     except ValueError:
-        print("\nInvalid! Please try again.")
+        print("\nInvalid Choice! Please try again.")
         who_wants_withdrawal()
 
 
