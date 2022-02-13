@@ -240,7 +240,7 @@ def withdraw_money(user_withdraw_choice):
             withdraw_money(user_withdraw_choice)
     elif user_withdraw_choice == 5:
         if withdraw <= float(fnd_sheet.cell(col=5, row=2).value):
-            withdraw_list = [0] * 4+ [-withdraw] + [0] * 3
+            withdraw_list = [0] * 4 + [-withdraw] + [0] * 3
             fnd_sheet.append_row(withdraw_list)
         else:
             print("Sorry! You exceeded the available funds for withdrawal!")
@@ -248,7 +248,7 @@ def withdraw_money(user_withdraw_choice):
             withdraw_money(user_withdraw_choice)
     elif user_withdraw_choice == 6:
         if withdraw <= float(fnd_sheet.cell(col=6, row=2).value):
-            withdraw_list = [0] * 5+ [-withdraw] + [0] * 2
+            withdraw_list = [0] * 5 + [-withdraw] + [0] * 2
             fnd_sheet.append_row(withdraw_list)
         else:
             print("Sorry! You exceeded the available funds for withdrawal!")
@@ -294,11 +294,13 @@ def who_wants_withdrawal():
     Ask the user who wants to withdraw money
     """
     global user_withdraw_choice
-    fnd_sheet = SHEET.worksheet("funds").get_all_values()
-    print(f"\nWho wants to withdraw money?")
-    print("1 - Ann\n2 - Ben\n3 - Carl\n4 - Dean\n5 - Emma\n6 - Fiona\n7 - Greg\n8 - Harry")
+    SHEET.worksheet("funds").get_all_values()
+    print("\nWho wants to withdraw money?")
+    print("""1 - Ann\n2 - Ben\n3 - Carl\n4 - Dean\n5 - Emma\n6 - Fiona
+7 - Greg\n8 - Harry""")
     try:
-        user_withdraw_choice = int(input("\nSelect from the corresponding numbers above:\n"))
+        user_withdraw_choice = int(input("""\nSelect from the corresponding
+numbers above:\n"""))
         if user_withdraw_choice == 1:
             print("\nWithdraw money for Ann?\n")
             confirm_withdraw_choice()
@@ -329,12 +331,7 @@ def who_wants_withdrawal():
     except ValueError:
         print("\nInvalid! Please try again.")
         who_wants_withdrawal()
-        # should go back to main menu
 
 
 user_withdraw_choice = 0
-# who_wants_withdrawal()
-# withdraw_money()
-# print(user_withdraw_choice)
 get_user_choice()
-
