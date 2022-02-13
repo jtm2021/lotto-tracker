@@ -13,7 +13,6 @@ SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('lotto_tracker')
 
-
 print("Welcome to Lotto Tracker Data Automation!")
 
 
@@ -45,8 +44,8 @@ def get_user_choice():
             print("\nInvalid Choice! Please try again.")
             get_user_choice()
     except ValueError:
-            print("\nInvalid Choice! Please try again.")
-            get_user_choice()
+        print("\nInvalid Choice! Please try again.")
+        get_user_choice()
 
 
 def check_total_funds():
@@ -199,13 +198,133 @@ def exit_program():
     print("Thanks for checking in! Have a nice day! Goodbye...")
 
 
-# def withdraw_money():
-#     """
-#     Withdraw money for a group member
-#     """
-#     wd_sheet = SHEET.worksheet("funds").get_all_values()[1:]
-#     cell = wd_sheet[1][2]
-#     print(cell)
+def withdraw_money(user_withdraw_choice):
+    """
+    Withdraw money for a group member
+    """
+    fnd_sheet = SHEET.worksheet("funds")
+    withdraw = float(input("\nEnter amount of money to withdraw: "))
+    if user_withdraw_choice == 1:
+        if withdraw <= float(fnd_sheet.cell(col=1, row=2).value):
+            withdraw_list = [-withdraw] + [0] * 7
+            fnd_sheet.append_row(withdraw_list)
+        else:
+            print(f"Sorry! The withdrawal limit is: €{float(fnd_sheet.cell(col=1, row=2).value)}")
+            withdraw_money(user_withdraw_choice)
+    elif user_withdraw_choice == 2:
+        if withdraw <= float(fnd_sheet.cell(col=2, row=2).value):
+            withdraw_list = [0] + [-withdraw] + [0] * 6
+            fnd_sheet.append_row(withdraw_list)
+        else:
+            print(f"Sorry! The withdrawal limit is: €{float(fnd_sheet.cell(col=2, row=2).value)}")
+            withdraw_money(user_withdraw_choice)
+    elif user_withdraw_choice == 3:
+        if withdraw <= float(fnd_sheet.cell(col=3, row=2).value):
+            withdraw_list = [0] * 2 + [-withdraw] + [0] * 5
+            fnd_sheet.append_row(withdraw_list)
+        else:
+            print(f"Sorry! The withdrawal limit is: €{float(fnd_sheet.cell(col=3, row=2).value)}")
+            withdraw_money(user_withdraw_choice)
+    elif user_withdraw_choice == 4:
+        if withdraw <= float(fnd_sheet.cell(col=4, row=2).value):
+            withdraw_list = [0] * 3 + [-withdraw] + [0] * 4
+            fnd_sheet.append_row(withdraw_list)
+        else:
+            print(f"Sorry! The withdrawal limit is: €{float(fnd_sheet.cell(col=4, row=2).value)}")
+            withdraw_money(user_withdraw_choice)
+    elif user_withdraw_choice == 5:
+        if withdraw <= float(fnd_sheet.cell(col=5, row=2).value):
+            withdraw_list = [0] * 4+ [-withdraw] + [0] * 3
+            fnd_sheet.append_row(withdraw_list)
+        else:
+            print(f"Sorry! The withdrawal limit is: €{float(fnd_sheet.cell(col=5, row=2).value)}")
+            withdraw_money(user_withdraw_choice)
+    elif user_withdraw_choice == 6:
+        if withdraw <= float(fnd_sheet.cell(col=6, row=2).value):
+            withdraw_list = [0] * 5+ [-withdraw] + [0] * 2
+            fnd_sheet.append_row(withdraw_list)
+        else:
+            print(f"Sorry! The withdrawal limit is: €{float(fnd_sheet.cell(col=6, row=2).value)}")
+            withdraw_money(user_withdraw_choice)
+    elif user_withdraw_choice == 7:
+        if withdraw <= float(fnd_sheet.cell(col=7, row=2).value):
+            withdraw_list = [0] * 6 + [-withdraw] + [0]
+            fnd_sheet.append_row(withdraw_list)
+        else:
+            print(f"Sorry! The withdrawal limit is: €{float(fnd_sheet.cell(col=7, row=2).value)}")
+            withdraw_money(user_withdraw_choice)
+    elif user_withdraw_choice == 8:
+        if withdraw <= float(fnd_sheet.cell(col=8, row=2).value):
+            withdraw_list = [0] * 7 + [-withdraw]
+            fnd_sheet.append_row(withdraw_list)
+        else:
+            print(f"Sorry! The withdrawal limit is: €{float(fnd_sheet.cell(col=8, row=2).value)}")
+            withdraw_money(user_withdraw_choice)
+    print("\nWithdrawal done! Updating funds worksheet...\n")
+    print("Current funds are up-to-date!.\n")
+    check_main_menu()
 
+
+def confirm_withdraw_choice():
+    """
+    Ask user to confirm withdrawal for a certain member
+    """
+    withdraw_choice = input("Confirm to proceed! (yes/no): \n")
+    if withdraw_choice.lower() == "yes":
+        withdraw_money(user_withdraw_choice)
+    elif withdraw_choice.lower() == "no":
+        check_main_menu()
+    else:
+        print("Invalid answer! Try again.")
+        who_wants_withdrawal()
+# user_withdraw_choice = 0
+
+
+def who_wants_withdrawal():
+    """
+    Ask the user who wants to withdraw money
+    """
+    global user_withdraw_choice
+    fnd_sheet = SHEET.worksheet("funds").get_all_values()
+    print(f"\nWho wants to withdraw money?")
+    print("1 - Ann\n2 - Ben\n3 - Carl\n4 - Dean\n5 - Emma\n6 - Fiona\n7 - Greg\n8 - Harry")
+    try:
+        user_withdraw_choice = int(input("\nSelect from the corresponding numbers above:\n"))
+        if user_withdraw_choice == 1:
+            print("\nWithdraw money for Ann?\n")
+            confirm_withdraw_choice()
+        elif user_withdraw_choice == 2:
+            print("\nWithdraw money for Ben?\n")
+            confirm_withdraw_choice()
+        elif user_withdraw_choice == 3:
+            print("\nWithdraw money for Carl?\n")
+            confirm_withdraw_choice()
+        elif user_withdraw_choice == 4:
+            print("\nWithdraw money for Dean?\n")
+            confirm_withdraw_choice()
+        elif user_withdraw_choice == 5:
+            print("\nWithdraw money for Emma?\n")
+            confirm_withdraw_choice()
+        elif user_withdraw_choice == 6:
+            print("\nWithdraw money for Fiona?\n")
+            confirm_withdraw_choice()
+        elif user_withdraw_choice == 7:
+            print("\nWithdraw money for Greg?\n")
+            confirm_withdraw_choice()
+        elif user_withdraw_choice == 8:
+            print("Withdraw money for Harry?\n")
+            confirm_withdraw_choice()
+        elif user_withdraw_choice < 1 or user_withdraw_choice > 8:
+            print("\nInvalid Choice! Please try again.")
+            who_wants_withdrawal()
+    except ValueError:
+        print("\nInvalid! Please try again.")
+        who_wants_withdrawal()
+        # should go back to main menu
+
+
+who_wants_withdrawal()
 # withdraw_money()
-get_user_choice()
+# print(user_withdraw_choice)
+# get_user_choice()
+
