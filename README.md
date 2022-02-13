@@ -1,3 +1,8 @@
+# REMINDERS:
+    1. please provide reference for codes "{:.2f}".format - float
+
+
+
 ![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
 
 Welcome jtm2021,

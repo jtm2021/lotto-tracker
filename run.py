@@ -23,7 +23,7 @@ def get_user_choice():
     print("\nPlease select from the menu using the corresponding number:\n")
     print("""1 - Check Group Total Funds\n2 - Lucky Numbers\n3 - Input Lotto Win
 4 - Check Last Numbers\n5 - Check Member Funds\n6 - Add Member Contribution
-7 - Exit\n""")
+7 - Withdraw Money for A Member\n8 - Exit\n""")
     try:
         user_choice = int(input("Please enter your choice (from no. 1-7):\n"))
         if user_choice == 1:
@@ -39,8 +39,10 @@ def get_user_choice():
         elif user_choice == 6:
             get_contributions_data()
         elif user_choice == 7:
+            who_wants_withdrawal()
+        elif user_choice == 8:
             exit_program()
-        elif user_choice <1 or user_choice > 7:
+        elif user_choice < 1 or user_choice > 8:
             print("\nInvalid Choice! Please try again.")
             get_user_choice()
     except ValueError:
@@ -92,17 +94,16 @@ def calculate_winnings():
 
 def input_win():
     """
-    Ask user to input amount of winnings and verify if the 
+    Ask user to input amount of winnings and verify if the
     user is sure of the amount.
     """
     while True:
         try:
-            sure_answer = float(input(f"Enter the amount of the winnings: \n"))
+            float(input("Enter the amount of the winnings: \n"))
             calculate_winnings()
             break
-        except:
+        except ValueError:
             print("That's not a valid option!")
-            
 
 
 def check_last_numbers():
@@ -117,6 +118,9 @@ def check_last_numbers():
 
 
 def show_member_funds():
+    """
+    Retrieve data for each member's available funds
+    """
     print("Here are the current funds of each member:")
     funds = SHEET.worksheet("funds").get_all_values()
     for i in range(len(funds[0])):
@@ -128,13 +132,13 @@ def check_main_menu():
     """
     Ask user to go back to main menu or exit
     """
-    menu_exit_choice = input(f"Do you need anything else? (yes/no): \n")
+    menu_exit_choice = input("Do you need anything else? (yes/no): \n")
     if menu_exit_choice.lower() == "yes":
         get_user_choice()
     elif menu_exit_choice.lower() == "no":
         exit_program()
     else:
-        print(f"Invalid answer! Try again.")
+        print("Invalid answer! Try again.")
         check_main_menu()
 
 
@@ -148,9 +152,7 @@ def get_contributions_data():
         print("Contributions must be added in alphabetical order.")
         print("Example: Ann, Ben, Carl, Dean, Emma, Fiona, Greg, Harry")
         print("Example: 5,10,0,2,6,5,5,2\n")
-    
         data_str = input("Enter your data here:\n")
-    
         contributions_data = data_str.split(",")
         if validate_data(contributions_data):
             print("Data is valid!")
@@ -165,13 +167,13 @@ def validate_data(values):
     or if the input isn't exactly 8 values.
     """
     try:
-        [int(value) for value in values]
+        values = [int(value) for value in values]
         if len(values) != 8:
             raise ValueError(
                 f"8 values required! you provided {len(values)}"
             )
     except ValueError:
-        print(f"\nInvalid data! Please try again.\n")
+        print("\nInvalid data! Please try again.\n")
         return False
 
     return True
@@ -209,56 +211,64 @@ def withdraw_money(user_withdraw_choice):
             withdraw_list = [-withdraw] + [0] * 7
             fnd_sheet.append_row(withdraw_list)
         else:
-            print(f"Sorry! The withdrawal limit is: €{float(fnd_sheet.cell(col=1, row=2).value)}")
+            print("Sorry! You exceeded the available funds for withdrawal!")
+            print(f"Limit: €{float(fnd_sheet.cell(col=1, row=2).value)}")
             withdraw_money(user_withdraw_choice)
     elif user_withdraw_choice == 2:
         if withdraw <= float(fnd_sheet.cell(col=2, row=2).value):
             withdraw_list = [0] + [-withdraw] + [0] * 6
             fnd_sheet.append_row(withdraw_list)
         else:
-            print(f"Sorry! The withdrawal limit is: €{float(fnd_sheet.cell(col=2, row=2).value)}")
+            print("Sorry! You exceeded the available funds for withdrawal!")
+            print(f"Limit: €{float(fnd_sheet.cell(col=2, row=2).value)}")
             withdraw_money(user_withdraw_choice)
     elif user_withdraw_choice == 3:
         if withdraw <= float(fnd_sheet.cell(col=3, row=2).value):
             withdraw_list = [0] * 2 + [-withdraw] + [0] * 5
             fnd_sheet.append_row(withdraw_list)
         else:
-            print(f"Sorry! The withdrawal limit is: €{float(fnd_sheet.cell(col=3, row=2).value)}")
+            print("Sorry! You exceeded the available funds for withdrawal!")
+            print(f"Limit: €{float(fnd_sheet.cell(col=3, row=2).value)}")
             withdraw_money(user_withdraw_choice)
     elif user_withdraw_choice == 4:
         if withdraw <= float(fnd_sheet.cell(col=4, row=2).value):
             withdraw_list = [0] * 3 + [-withdraw] + [0] * 4
             fnd_sheet.append_row(withdraw_list)
         else:
-            print(f"Sorry! The withdrawal limit is: €{float(fnd_sheet.cell(col=4, row=2).value)}")
+            print("Sorry! You exceeded the available funds for withdrawal!")
+            print(f"Limit: €{float(fnd_sheet.cell(col=4, row=2).value)}")
             withdraw_money(user_withdraw_choice)
     elif user_withdraw_choice == 5:
         if withdraw <= float(fnd_sheet.cell(col=5, row=2).value):
             withdraw_list = [0] * 4+ [-withdraw] + [0] * 3
             fnd_sheet.append_row(withdraw_list)
         else:
-            print(f"Sorry! The withdrawal limit is: €{float(fnd_sheet.cell(col=5, row=2).value)}")
+            print("Sorry! You exceeded the available funds for withdrawal!")
+            print(f"Limit: €{float(fnd_sheet.cell(col=5, row=2).value)}")
             withdraw_money(user_withdraw_choice)
     elif user_withdraw_choice == 6:
         if withdraw <= float(fnd_sheet.cell(col=6, row=2).value):
             withdraw_list = [0] * 5+ [-withdraw] + [0] * 2
             fnd_sheet.append_row(withdraw_list)
         else:
-            print(f"Sorry! The withdrawal limit is: €{float(fnd_sheet.cell(col=6, row=2).value)}")
+            print("Sorry! You exceeded the available funds for withdrawal!")
+            print(f"Limit: €{float(fnd_sheet.cell(col=6, row=2).value)}")
             withdraw_money(user_withdraw_choice)
     elif user_withdraw_choice == 7:
         if withdraw <= float(fnd_sheet.cell(col=7, row=2).value):
             withdraw_list = [0] * 6 + [-withdraw] + [0]
             fnd_sheet.append_row(withdraw_list)
         else:
-            print(f"Sorry! The withdrawal limit is: €{float(fnd_sheet.cell(col=7, row=2).value)}")
+            print("Sorry! You exceeded the available funds for withdrawal!")
+            print(f"Limit: €{float(fnd_sheet.cell(col=7, row=2).value)}")
             withdraw_money(user_withdraw_choice)
     elif user_withdraw_choice == 8:
         if withdraw <= float(fnd_sheet.cell(col=8, row=2).value):
             withdraw_list = [0] * 7 + [-withdraw]
             fnd_sheet.append_row(withdraw_list)
         else:
-            print(f"Sorry! The withdrawal limit is: €{float(fnd_sheet.cell(col=8, row=2).value)}")
+            print("Sorry! You exceeded the available funds for withdrawal!")
+            print(f"Limit: €{float(fnd_sheet.cell(col=8, row=2).value)}")
             withdraw_money(user_withdraw_choice)
     print("\nWithdrawal done! Updating funds worksheet...\n")
     print("Current funds are up-to-date!.\n")
@@ -277,7 +287,6 @@ def confirm_withdraw_choice():
     else:
         print("Invalid answer! Try again.")
         who_wants_withdrawal()
-# user_withdraw_choice = 0
 
 
 def who_wants_withdrawal():
@@ -323,8 +332,9 @@ def who_wants_withdrawal():
         # should go back to main menu
 
 
-who_wants_withdrawal()
+user_withdraw_choice = 0
+# who_wants_withdrawal()
 # withdraw_money()
 # print(user_withdraw_choice)
-# get_user_choice()
+get_user_choice()
 
