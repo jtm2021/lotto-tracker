@@ -25,7 +25,7 @@ def get_user_choice():
 4 - Check Last Numbers\n5 - Check Member Funds\n6 - Add Member Contribution
 7 - Withdraw Money for A Member\n8 - Exit\n""")
     try:
-        user_choice = int(input("Please enter your choice (from no. 1-7):\n"))
+        user_choice = int(input("Please enter your choice (from no. 1-8):\n"))
         if user_choice == 1:
             check_total_funds()
         elif user_choice == 2:
@@ -129,20 +129,6 @@ def show_member_funds():
     check_main_menu()
 
 
-def check_main_menu():
-    """
-    Ask user to go back to main menu or exit
-    """
-    menu_exit_choice = input("\nDo you need anything else? (yes/no): \n")
-    if menu_exit_choice.lower() == "yes":
-        get_user_choice()
-    elif menu_exit_choice.lower() == "no":
-        exit_program()
-    else:
-        print("Invalid answer! Try again.")
-        check_main_menu()
-
-
 def get_contributions_data():
     """
     Get contributions from each player for the lotto draw.
@@ -194,11 +180,62 @@ def update_contributions_worksheet(new_contribution):
     check_main_menu()
 
 
-def exit_program():
+def who_wants_withdrawal():
     """
-    Exits the whole program function
+    Ask the user who wants to withdraw money
     """
-    print("Thanks for checking in! Have a nice day! Goodbye...")
+    global user_withdraw_choice
+    SHEET.worksheet("funds").get_all_values()
+    print("\nWho wants to withdraw money?")
+    print("""1 - Ann\n2 - Ben\n3 - Carl\n4 - Dean\n5 - Emma\n6 - Fiona
+7 - Greg\n8 - Harry""")
+    try:
+        user_withdraw_choice = int(input("""\nSelect from the corresponding
+numbers above:\n"""))
+        if user_withdraw_choice == 1:
+            print("\nWithdraw money for Ann?\n")
+            confirm_withdraw_choice()
+        elif user_withdraw_choice == 2:
+            print("\nWithdraw money for Ben?\n")
+            confirm_withdraw_choice()
+        elif user_withdraw_choice == 3:
+            print("\nWithdraw money for Carl?\n")
+            confirm_withdraw_choice()
+        elif user_withdraw_choice == 4:
+            print("\nWithdraw money for Dean?\n")
+            confirm_withdraw_choice()
+        elif user_withdraw_choice == 5:
+            print("\nWithdraw money for Emma?\n")
+            confirm_withdraw_choice()
+        elif user_withdraw_choice == 6:
+            print("\nWithdraw money for Fiona?\n")
+            confirm_withdraw_choice()
+        elif user_withdraw_choice == 7:
+            print("\nWithdraw money for Greg?\n")
+            confirm_withdraw_choice()
+        elif user_withdraw_choice == 8:
+            print("Withdraw money for Harry?\n")
+            confirm_withdraw_choice()
+        elif user_withdraw_choice < 1 or user_withdraw_choice > 8:
+            print("\nInvalid Choice! Please try again.")
+            who_wants_withdrawal()
+    except ValueError:
+        print("\nInvalid Choice! Please try again.")
+        who_wants_withdrawal()
+
+
+def confirm_withdraw_choice():
+    """
+    Ask user to confirm withdrawal for a certain member
+    """
+    withdraw_choice = input("Confirm to proceed! (yes/no): \n")
+    if withdraw_choice.lower() == "yes":
+        withdraw_money(user_withdraw_choice)
+    elif withdraw_choice.lower() == "no":
+        check_main_menu()
+    else:
+        print("\nInvalid answer! Try again.")
+        confirm_withdraw_choice()
 
 
 def withdraw_money(user_withdraw_choice):
@@ -276,62 +313,25 @@ def withdraw_money(user_withdraw_choice):
     check_main_menu()
 
 
-def confirm_withdraw_choice():
+def check_main_menu():
     """
-    Ask user to confirm withdrawal for a certain member
+    Ask user to go back to main menu or exit
     """
-    withdraw_choice = input("Confirm to proceed! (yes/no): \n")
-    if withdraw_choice.lower() == "yes":
-        withdraw_money(user_withdraw_choice)
-    elif withdraw_choice.lower() == "no":
-        check_main_menu()
+    menu_exit_choice = input("\nDo you need anything else? (yes/no): \n")
+    if menu_exit_choice.lower() == "yes":
+        get_user_choice()
+    elif menu_exit_choice.lower() == "no":
+        exit_program()
     else:
-        print("\nInvalid answer! Try again.")
-        confirm_withdraw_choice()
+        print("Invalid answer! Try again.")
+        check_main_menu()
 
 
-def who_wants_withdrawal():
+def exit_program():
     """
-    Ask the user who wants to withdraw money
+    Exits the whole program function
     """
-    global user_withdraw_choice
-    SHEET.worksheet("funds").get_all_values()
-    print("\nWho wants to withdraw money?")
-    print("""1 - Ann\n2 - Ben\n3 - Carl\n4 - Dean\n5 - Emma\n6 - Fiona
-7 - Greg\n8 - Harry""")
-    try:
-        user_withdraw_choice = int(input("""\nSelect from the corresponding
-numbers above:\n"""))
-        if user_withdraw_choice == 1:
-            print("\nWithdraw money for Ann?\n")
-            confirm_withdraw_choice()
-        elif user_withdraw_choice == 2:
-            print("\nWithdraw money for Ben?\n")
-            confirm_withdraw_choice()
-        elif user_withdraw_choice == 3:
-            print("\nWithdraw money for Carl?\n")
-            confirm_withdraw_choice()
-        elif user_withdraw_choice == 4:
-            print("\nWithdraw money for Dean?\n")
-            confirm_withdraw_choice()
-        elif user_withdraw_choice == 5:
-            print("\nWithdraw money for Emma?\n")
-            confirm_withdraw_choice()
-        elif user_withdraw_choice == 6:
-            print("\nWithdraw money for Fiona?\n")
-            confirm_withdraw_choice()
-        elif user_withdraw_choice == 7:
-            print("\nWithdraw money for Greg?\n")
-            confirm_withdraw_choice()
-        elif user_withdraw_choice == 8:
-            print("Withdraw money for Harry?\n")
-            confirm_withdraw_choice()
-        elif user_withdraw_choice < 1 or user_withdraw_choice > 8:
-            print("\nInvalid Choice! Please try again.")
-            who_wants_withdrawal()
-    except ValueError:
-        print("\nInvalid Choice! Please try again.")
-        who_wants_withdrawal()
+    print("Thanks for checking in! Have a nice day! Goodbye...")
 
 
 user_withdraw_choice = 0
