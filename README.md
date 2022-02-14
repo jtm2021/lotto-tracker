@@ -18,6 +18,21 @@ All the data that is retrieved, updated and is inputted by the user is stored in
 
 ![Google Sheets](images-readme/google-sheets.png)
 
+## Python Library ##
+
+I have installed `random` library in order for this project to work:
+- _random_ - used to generate random six numbers for the user between 1 and 47.
+
+## Application Programming Interface ##
+
+I have used two API's for this project to access and share data:
+
+- *Google Drive API*
+
+- *Google Sheets API*
+
+<br>
+
 ## How To Use ##
 
 The program is initiated automatically when opened in the browser. The main menu is then presented to the user. There are 8 different options that the user can choose from.
@@ -77,10 +92,10 @@ The user can then input the correct number from the menu to perform the specific
 
         ![Input Contributions](images-readme/input-contributions.png)
         ![Contributions Updated](images-readme/contributions-updated.png)
-
+        ![Funds Also Updated](images-readme/contributions-funds-updated.png)
 
 - ### Withdraw Money for A Member ###
-    - This function allows the user to update the funds when a member decides to withdraw money their current funds. Firstly, the user is asked to choose from the menu which member wants to do a withdrawal.
+    - This function allows the user to update the funds when a member decides to withdraw money from their current funds. Firstly, the user is asked to choose from the menu which member wants to do a withdrawal.
 
         ![Member Who Wants to Withdraw](images-readme/which-member.png)
 
@@ -111,16 +126,16 @@ I have manually tested this program by doing the following:
     1. Create an account in `Heroku` website - https://heroku.com
     2. Click the link provided in the confirmation email sent by 
     Heroku to confirm.
-    3. Set the password, login and accept their terms of service.
+    3. Set the password and accept their terms of service.
     4. From the Heroku dashboard, click `Create new app` button.
     5. Create a name for the app (the app name has to be unique).
     6. Select a region (United States or Europe), then click create app.
     7. Go to `Settings` tab and add two `Config Var`:
         - key: `CREDS` and value: `(entire creds.json file from your workspace)`
         - key: `PORT` and value: `8000`
-    8. Still in the `Settings` tab, add `python` and `nodejs` buildpacks
+    8. Still in the `Settings` tab, add `python` and `nodejs` buildpacks.
     9. Go to `Deploy` tab and select Github  by clicking the `Connect to Github` button.
-    10. Type for the Github repository name in the field and click search and then click connect to link up Heroku app to Github repositry code.
+    10. Type the Github repository name in the field and click search and then click connect to link up Heroku app to Github repository code.
     11. Scroll down and select either `automatic` or `manual` deployment:
         - Automatic Deployment: Click the `Enable Automatic Deploys` button.
         - Manual Deployment: Click the `Deploy Branch` button.
