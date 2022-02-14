@@ -84,11 +84,11 @@ The user can then input the correct number from the menu to perform the specific
 
 
 - ### Add Member Contribution ###
-    - This function asks the user to input contribution from the members. A short guide for a valid user input is dispalyed before inputting the contributions data.
+    - This function asks the user to input contribution from the members. A short guide for a valid user input is displayed before inputting the contributions data.
 
         ![Input Contributions Guide](images-readme/input-contributions-guide.png)
 
-    - Contributions are added in one go. If there's a member who has no contribution for the day, a value of `0` is inputted for a specific member.
+    - Contributions are added in one go. If there's a member who has no contribution for the day, a value of `0` is inputted for a specific member. The user can also input a value with decimal places (Example: 1.50 or 5.75.)
 
         ![Input Contributions](images-readme/input-contributions.png)
         ![Contributions Updated](images-readme/contributions-updated.png)
