@@ -37,6 +37,19 @@ The user can then input the correct number from the menu to perform the specific
 
         ![Lucky Numbers](images-readme/lucky-numbers.png)
 
+
+- ### Input Lotto Win ###
+    - This function asks the user to input the amount of lotto win for the group. It is then automatically divided equally to all members of the lottery syndicate. The funds worksheet is then updated.
+
+        ![Input Lotto Win](images-readme/input-win.png)
+
+
+- ### Check Last Numbers ###
+    - This function displays the last lucky numbers of he group.
+
+        ![Last Lucky Numbers](images-readme/last-lucky-nums.png)
+
+
 ## Bugs ##
 - No bugs identified.
 
