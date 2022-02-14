@@ -151,5 +151,5 @@ I have manually tested this program by doing the following:
 ### Credits ###
 
 - This project was inspired by the `Love Sandwiches Project` of Code Institute.
-- An important code to format a string was taken from `ThePythonGuru` website. The link is here:
+- An important code `"{:.2f}".format` to format a string was taken from `ThePythonGuru` website. The link is here:
     https://thepythonguru.com/python-string-formatting/
