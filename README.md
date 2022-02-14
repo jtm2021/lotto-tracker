@@ -30,13 +30,19 @@ The user can then input the correct number from the menu to perform the specific
     - This function simply calculates the total amount of money from each individual member's current funds. This is then displayed for the user.
 
         ![Group Total Funds](images-readme/group-total-funds.png)
+        ![Funds Worksheet](images-readme/funds-worksheet.png)
+
+    - In the image above, the highlighted row is the current individual member funds where the first row displays the name of each member.
+    - The first program function calculates the sum of all values in the first row. You can see in the image below, that the operation returns a correct amount when all of these values are summed up using a `sum` function in google sheets.
+
+        ![Funds Worksheet](images-readme/funds-worksheet-verified.png)
 
 
 - ### Lucky Numbers ###
     - This function generates random six numbers that the group can use for a bet in the lottery. This is then displayed for the user.
 
         ![Lucky Numbers](images-readme/lucky-numbers.png)
-
+    
 
 - ### Input Lotto Win ###
     - This function asks the user to input the amount of lotto win for the group. It is then automatically divided equally to all members of the lottery syndicate. The funds worksheet is then updated.
@@ -48,6 +54,7 @@ The user can then input the correct number from the menu to perform the specific
     - This function displays the last lucky numbers of he group.
 
         ![Last Lucky Numbers](images-readme/last-lucky-nums.png)
+        ![Numbers Sheets](images-readme/numbers-sheets.png)
 
 
 - ### Check Member Funds ###
