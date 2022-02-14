@@ -140,7 +140,8 @@ def get_contributions_data():
         print("Example: Ann, Ben, Carl, Dean, Emma, Fiona, Greg, Harry")
         print("Example: 5,10,0,2,6,5,5,2\n")
         data_str = input("Enter your data here:\n")
-        contributions_data = data_str.split(",")
+        contributions_data1 = data_str.split(",")
+        contributions_data = [float(i) for i in contributions_data1]
         if validate_data(contributions_data):
             print("Data is valid!")
             update_contributions_worksheet(contributions_data)
