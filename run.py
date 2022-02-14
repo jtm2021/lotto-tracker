@@ -43,10 +43,10 @@ def get_user_choice():
         elif user_choice == 8:
             exit_program()
         elif user_choice < 1 or user_choice > 8:
-            print("\nInvalid Choice! Please try again.")
+            print("\nInvalid input! Please try again.")
             get_user_choice()
     except ValueError:
-        print("\nInvalid Choice! Please try again.")
+        print("\nInvalid input! Please try again.")
         get_user_choice()
 
 
@@ -104,7 +104,7 @@ def input_win():
             calculate_winnings()
             break
         except ValueError:
-            print("That's not a valid option!")
+            print("That's not a valid amount!")
 
 
 def check_last_numbers():
