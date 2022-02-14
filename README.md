@@ -12,7 +12,7 @@ This program flow chart is a guide on how the program flows. The chart was made 
 
 ## Data Storage ##
 
-All the data that is retrieved, updated and is inputted by the user is stored in Google Sheets - [https://www.google.com/sheets/about/].
+All the data that is retrieved, updated and is inputted by the user is stored in Google Sheets - [https://www.google.com/sheets/about/]. There are three worksheets including the `contributions`, `funds`, and `numbers`. These worksheets store data for the program so the user can retrieve, update and input information for the lottery syndicate.
 
 ![Google Sheets](images-readme/google-sheets.png)
 
@@ -48,6 +48,33 @@ The user can then input the correct number from the menu to perform the specific
     - This function displays the last lucky numbers of he group.
 
         ![Last Lucky Numbers](images-readme/last-lucky-nums.png)
+
+
+- ### Check Member Funds ###
+    - This function displays the last lucky numbers of he group.
+
+        ![Check Member Funds](images-readme/member-funds.png)
+
+
+- ### Add Member Contribution ###
+    - This function asks the user to input contribution from the members. A short guide for a valid user input is dispalyed before inputting the contributions data.
+
+        ![Input Contributions Guide](images-readme/input-contributions-guide.png)
+
+    - Contributions are added in one go. If there's a member who has no contribution for the day, a value of `0` is inputted for a specific member.
+
+        ![Input Contributions](images-readme/input-contributions.png)
+
+
+- ### Withdraw Money for A Member ###
+    - This function allows the user to update the funds when a member decides to withdraw money their current funds. Firstly, the user is asked to choose from the menu which member wants to do a withdrawal.
+
+        ![Member Who Wants to Withdraw](images-readme/which-member.png)
+
+    - After the user decides which member wants to withdraw an amount, a confirmation message is displayed. If the user confirms, the withdrawal operation is done, and the funds worksheet is updated.
+
+        ![Withdrawal Operation](images-readme/withdrawal.png)
+        ![Withdrawal Operation](images-readme/withdrawal.png)
 
 
 ## Bugs ##
