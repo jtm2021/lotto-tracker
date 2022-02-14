@@ -2,72 +2,31 @@
 
 Welcome to Lotto Tracker Data Automation! This program is a useful tool for a group who wants to manage finance in a lottery syndicate. This aims to help the group leader or treasurer to retrieve financial data, get random numbers for lottery, add contributions and manage withdrawals from the funds.
 
-![Mockup Screenshot](images-readme/mockup.jpg)
+![Mockup Screenshot](images-readme/mockup.png)
 
 ## How To Use ##
 
-## Features ##
+The program is initiated automatically when opened. The main menu is then presented to the user. There are 8 different options that the user can choose from.
 
-- ### Navigation ###
-    - The navigation bar is located at the very top of the website. It is simple yet an effective feature of the website.
-    - The navigation includes three links to different sections and these are accessible in each page.
-    - This feature provides easy navigation for users from page to page across different devices.
+The user can then input the correct number from the menu to perform the specific program function.
 
-![Navigation Bar](images-readme/navbar-ss.jpg)
+![Main Menu](images-readme/main-menu.png)
 
-<br>
+## Program Flow Chart ##
 
-- ### The Header and Landing Page Image ###
-    - The header of the page features the name of the organization.
-    - This section is displayed in big font and is separated from the navigation bar to highlight the importance of the name of the organization.    
-    - The header also features an image that attracts users to know more about keto facts.
+![Main Menu](images-readme/flow-chart.png)
 
-![Header](images-readme/header-ss.jpg)
+
+## Program Functions ##
+
+- ### Check Group Total Funds ###
+    - This function simply calculates the total amount of money from each individual member's current funds. This is then displayed for the user.
 
 <br>
 
-- ### Keto Facts Section ###
-    - The keto facts section features basic information about ketogenic diet.
-    - Users are provided with fundamental facts of keto which includes definition, types and its benefits.
-    - This section features eye-catching images that make the site vibrant and rich.
 
-![Keto Facts Section](images-readme/main-content-ss.jpg)
 
-<br>
 
-- ### Food Guide Section ###
-    - This section presents an uncomplicated guide to users showing the kinds of food to eat and which ones to stay away from.
-    - This feature also displays two images that relates to the food guide to make this section remarkable.
-
-![Food Guide Section](images-readme/food-guide-ss.jpg)
-
-<br>
-
-- ### Footer / Social Media Section ###
-    - The social media section contains three icons that links to three of the most commonly used social media apps. Each of these links, when clicked, will lead the users to another tab to retain the main page when browsing.
-    - This feature is essential to users as this will give them access to more information that is available in the social network of the organization.
- 
-![Footer / Social Media Section](images-readme/footer-ss.jpg)
-
-<br>
-
-- ### About Section ###
-    - The about section features a short description of the organization.
-    - This section reveals the commitment and the mission of the organization.
-    - This page also exhibits an image that depicts the culture and vibe in the organization.
-
-![About Section](images-readme/about-us-ss.jpg)
-
-<br>
-
-- ### Contact Page ###
-    - This page features a large image with a friendly question that invites users to fill out the form and contact the organization.
-    - This section features a simple style, short and an uncomplicated form for a quick message or query from the users of the website.
-    - The contact form collects four essential information from the users: full name, email address, phone number and message. 
- 
-![Contact Page](images-readme/contact-page-ss.jpg)
-
-<br>
 
 ## Testing ##
 
