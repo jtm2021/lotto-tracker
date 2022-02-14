@@ -77,7 +77,7 @@ The user can then input the correct number from the menu to perform the specific
 
 
 - ### Check Member Funds ###
-    - This function displays the individual member's funds. It retrieves the first row of the funds worksheet and displays it for the user.
+    - This function displays the individual member's funds. It retrieves the first and second row of the funds worksheet and displays it for the user.
 
         ![Check Member Funds](images-readme/member-funds.png)
         ![Funds Worksheet](images-readme/funds-worksheet.png)
