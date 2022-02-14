@@ -13,14 +13,14 @@ SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('lotto_tracker')
 
-print("Welcome to Lotto Tracker Data Automation!")
+print("Welcome to Lotto Tracker Data Automation!\n")
 
 
 def get_user_choice():
     """
     Get user choice from the welcome menu.
     """
-    print("\nPlease select from the menu using the corresponding number:\n")
+    print("Please select from the menu using the corresponding number:\n")
     print("""1 - Check Group Total Funds\n2 - Lucky Numbers\n3 - Input Lotto Win
 4 - Check Last Numbers\n5 - Check Member Funds\n6 - Add Member Contribution
 7 - Withdraw Money for A Member\n8 - Exit\n""")
@@ -59,7 +59,7 @@ def check_total_funds():
     funds_first_row = funds[1]
     total_funds = sum([float(i) for i in funds_first_row])
     total_funds_float = "{:.2f}".format(total_funds)
-    print(f"Total Funds: €{total_funds_float}")
+    print(f"Total Funds: €{total_funds_float}\n")
     check_main_menu()
 
 
@@ -68,8 +68,8 @@ def get_lucky_numbers():
     Get lucky numbers using a random number generator
     """
     lucky_numbers = random.sample(list(range(1, 47)), 6)
-    print(f"\nHere's the lucky numbers for you today: {lucky_numbers}")
-    print("Feel free to copy these numbers, you might win the jackpot! :)")
+    print(f"\nHere are the lucky numbers for you today: {lucky_numbers}")
+    print("Feel free to copy these numbers, you might win the jackpot! :)\n")
     numbers_worksheet = SHEET.worksheet("numbers")
     numbers_worksheet.append_row(lucky_numbers)
     check_main_menu()
@@ -83,7 +83,7 @@ def calculate_winnings():
     total_win = "{:.2f}".format(winning_value)
     member_share = float(winning_value / 8)
     member_share_float = "{:.2f}".format(member_share)
-    print(f"\nCongratulations! Your group has won €{total_win}\n")
+    print(f"\nCongratulations! Your group has won €{total_win}!\n")
     print("Calculating dividends for each member...")
     print(f"Each member gets €{member_share_float} each!\n")
     fundsheets = SHEET.worksheet("funds")
@@ -160,7 +160,7 @@ def validate_data(values):
                 f"8 values required! you provided {len(values)}"
             )
     except ValueError:
-        print("\nInvalid data! Please try again.\n")
+        print("\nInvalid data! Please try again.")
         return False
 
     return True
@@ -248,6 +248,7 @@ def withdraw_money(user_withdraw_choice):
         if withdraw <= float(fnd_sheet.cell(col=1, row=2).value):
             withdraw_list = [-withdraw] + [0] * 7
             fnd_sheet.append_row(withdraw_list)
+            update_funds_worksheet()
         else:
             print("Sorry! You exceeded the available funds for withdrawal!")
             print(f"Limit: €{float(fnd_sheet.cell(col=1, row=2).value)}")
@@ -256,6 +257,7 @@ def withdraw_money(user_withdraw_choice):
         if withdraw <= float(fnd_sheet.cell(col=2, row=2).value):
             withdraw_list = [0] + [-withdraw] + [0] * 6
             fnd_sheet.append_row(withdraw_list)
+            update_funds_worksheet()
         else:
             print("Sorry! You exceeded the available funds for withdrawal!")
             print(f"Limit: €{float(fnd_sheet.cell(col=2, row=2).value)}")
@@ -264,6 +266,7 @@ def withdraw_money(user_withdraw_choice):
         if withdraw <= float(fnd_sheet.cell(col=3, row=2).value):
             withdraw_list = [0] * 2 + [-withdraw] + [0] * 5
             fnd_sheet.append_row(withdraw_list)
+            update_funds_worksheet()
         else:
             print("Sorry! You exceeded the available funds for withdrawal!")
             print(f"Limit: €{float(fnd_sheet.cell(col=3, row=2).value)}")
@@ -272,6 +275,7 @@ def withdraw_money(user_withdraw_choice):
         if withdraw <= float(fnd_sheet.cell(col=4, row=2).value):
             withdraw_list = [0] * 3 + [-withdraw] + [0] * 4
             fnd_sheet.append_row(withdraw_list)
+            update_funds_worksheet()
         else:
             print("Sorry! You exceeded the available funds for withdrawal!")
             print(f"Limit: €{float(fnd_sheet.cell(col=4, row=2).value)}")
@@ -280,6 +284,7 @@ def withdraw_money(user_withdraw_choice):
         if withdraw <= float(fnd_sheet.cell(col=5, row=2).value):
             withdraw_list = [0] * 4 + [-withdraw] + [0] * 3
             fnd_sheet.append_row(withdraw_list)
+            update_funds_worksheet()
         else:
             print("Sorry! You exceeded the available funds for withdrawal!")
             print(f"Limit: €{float(fnd_sheet.cell(col=5, row=2).value)}")
@@ -288,6 +293,7 @@ def withdraw_money(user_withdraw_choice):
         if withdraw <= float(fnd_sheet.cell(col=6, row=2).value):
             withdraw_list = [0] * 5 + [-withdraw] + [0] * 2
             fnd_sheet.append_row(withdraw_list)
+            update_funds_worksheet()
         else:
             print("Sorry! You exceeded the available funds for withdrawal!")
             print(f"Limit: €{float(fnd_sheet.cell(col=6, row=2).value)}")
@@ -296,6 +302,7 @@ def withdraw_money(user_withdraw_choice):
         if withdraw <= float(fnd_sheet.cell(col=7, row=2).value):
             withdraw_list = [0] * 6 + [-withdraw] + [0]
             fnd_sheet.append_row(withdraw_list)
+            update_funds_worksheet()
         else:
             print("Sorry! You exceeded the available funds for withdrawal!")
             print(f"Limit: €{float(fnd_sheet.cell(col=7, row=2).value)}")
@@ -304,10 +311,17 @@ def withdraw_money(user_withdraw_choice):
         if withdraw <= float(fnd_sheet.cell(col=8, row=2).value):
             withdraw_list = [0] * 7 + [-withdraw]
             fnd_sheet.append_row(withdraw_list)
+            update_funds_worksheet()
         else:
             print("Sorry! You exceeded the available funds for withdrawal!")
             print(f"Limit: €{float(fnd_sheet.cell(col=8, row=2).value)}")
             withdraw_money(user_withdraw_choice)
+
+
+def update_funds_worksheet():
+    """
+    Update funds worksheet after withdrawal of money
+    """
     print("\nWithdrawal done! Updating funds worksheet...\n")
     print("Current funds are up-to-date!.\n")
     check_main_menu()
@@ -317,7 +331,7 @@ def check_main_menu():
     """
     Ask user to go back to main menu or exit
     """
-    menu_exit_choice = input("\nDo you need anything else? (yes/no): \n")
+    menu_exit_choice = input("Do you need anything else? (yes/no):\n")
     if menu_exit_choice.lower() == "yes":
         get_user_choice()
     elif menu_exit_choice.lower() == "no":

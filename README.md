@@ -1,5 +1,7 @@
 # REMINDERS:
     1. please provide reference for codes "{:.2f}".format - float
+    2.Clearly separate and identify code written for the application and code from external sources (e.g. libraries or tutorials)
+    3. Don't forget flowchart of the program
 
 
 
