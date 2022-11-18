@@ -122,7 +122,26 @@ I have manually tested this program by doing the following:
 
 ## Deployment ##
 
-- The project was deployed using the Code Institute's terminal for Heroku. These are steps for the deployment of the project:
+- This project was deployed with another hosting platform which is called Render. The following are the steps done to deploy the project:
+    1. Create an account with `Render` website - https://render.com/
+    2. Confirm email sent by Render.
+    3. Navigate to Render.com and log in.
+    4. On the dashboard, click "New +" and select Web Service.
+    5. Search for relevant repo and click Connect (Alternatively, copy project's URL in the public git repository field and click connect)
+    6. Input appropriate settings as seen in the image below:
+        ![Deployment Settings](images-readme/deployment.png)
+    7. Set the build command to: `pip install -r requirements.txt && npm install` (Using && in a terminal command means that anything following the && will only be performed on a successful execution of the previous command.)
+    8.  Set the start command to: `node index.js`
+    9. Ensure the free plan is selected.
+    10. In the advanced tab, select "Add Environment Variable" and input the following:
+        ![Environment Variables](images-readme/environment_variables.png)
+    11. Select "Add Secret File" in Render with `creds.json` in the Filename field and paste the value of your creds in the file contents box.
+    12. Select YES for auto-deploy then click the "Create Web Service" button. Deployment can take up to 15 minutes to complete.
+    13. Once deployment is finished, the link will be displayed on the dashboard below the "WEB SERVICE" name. Enjoy the newly deployed project!
+    
+
+
+- The project was initially deployed using the Code Institute's terminal for Heroku. These are steps for the deployment of the project:
     1. Create an account in `Heroku` website - https://heroku.com
     2. Click the link provided in the confirmation email sent by 
     Heroku to confirm.
@@ -144,7 +163,7 @@ I have manually tested this program by doing the following:
 
 <br>
 
-- The live link can be found here - https://lotto-tracker.herokuapp.com/
+- The live link can be found here - https://lotto-tracker.onrender.com
 
 <br>
 
